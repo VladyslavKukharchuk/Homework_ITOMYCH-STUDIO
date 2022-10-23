@@ -1,0 +1,22 @@
+{
+  "name": "lecture2",
+  "version": "1.0.0",
+  "description": "simple \"hello world” app",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VladyslavKukharchuk/Homework_ITOMYCH-STUDIO.git#master"
+  },
+  "author": "Vladyslav Kukharchuk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VladyslavKukharchuk/Homework_ITOMYCH-STUDIO/issues"
+  },
+  "homepage": "https://github.com/VladyslavKukharchuk/Homework_ITOMYCH-STUDIO/tree/master#readme",
+  "dependencies": {
+    "ip": "^1.1.8"
+  }
+}
