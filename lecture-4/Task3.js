@@ -6,8 +6,11 @@
 
 // addSix(21); // returns 27
 
-function createBase(num){
-    return 10 + num;
+function createBase(increment){
+
+    return function(num){
+        return num + increment;
+    }
 }
 
 let addSix = createBase(6);
