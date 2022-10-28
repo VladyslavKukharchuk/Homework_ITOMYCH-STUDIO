@@ -17,15 +17,15 @@ readline.question("Enter a two-digit number between 10 and 99: ", function (answ
 
     let number = answer;
     if (number === "") {
-        console.log(`Ви ввели пусту строку, спробуйте ще раз.`);
+        console.log(`You have entered an empty string, please try again.`);
     } else if (number.includes(` `)) {
-        console.log(`Введіть числа без пробілів, спробуйте ще раз.`);
+        console.log(`You entered numbers with spaces, please try again.`);
     } else if (isNaN(Number(number)) === true) {
-        console.log(`Ви ввели не число, спробуйте ще раз.`);
+        console.log(`You entered a number in the wrong format, please try again.`);
     } else if (Number(number) < 10) {
-        console.log(`Введене число менше 10, спробуйте ще раз.`);
+        console.log(`The number entered is less than 10, please try again.`);
     } else if (Number(number) > 99) {
-        console.log(`Введене число більше 99, спробуйте ще раз.`);
+        console.log(`The number you entered is greater than 99, please try again.`);
     } else {
 
         let stringWithSpaces = "";
