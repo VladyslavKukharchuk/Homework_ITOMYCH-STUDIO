@@ -13,16 +13,16 @@ const readline = require('readline').createInterface({
     output: process.stdout
 });
 
-function calc(num1, num2 = 4) {
-    let per = num1 * num2;
-    let plo;
-    if (num2 === 4) {
-        plo = num1 * num1;
+function calcAreaAndPerimeter(sideLength, numberOfSides = 4) {
+    let perimeter = sideLength * numberOfSides;
+    let area ;
+    if (numberOfSides === 4) { //Calculation for a square
+        area  = sideLength * sideLength;
     }
-    return `периметр: ${per}, площа: ${plo}`
+    return `perimeter: ${perimeter} and area: ${area}`
 }
 
-readline.question("Введіть довжину сторони вашого квадрата, дозволений діапазон від 1 до 1000: ", function (answer) {
+readline.question("Enter the length of the side of your square, allowed range from 1 to 1000: ", function (answer) {
 
     let number = answer.replaceAll(` `, ``);
     if (number === "") {
@@ -30,9 +30,9 @@ readline.question("Введіть довжину сторони вашого к�
     } else if (isNaN(Number(number)) === true) {
         console.log(`You entered a number in the wrong format, please try again.`);
     } else if ((Number(number) < 1) || (Number(number) > 1000)) {
-        console.log(`Дозволений діапазон значень від 1 до 1000.`);
+        console.log(`The allowed value range is from 1 to 1000.`);
     } else {
-        console.log(`Сторона вашого вкадрата: ${number}, відповідно його ${ calc(Number(number))}`);
+        console.log(`The side of your square is: ${number}, so ${calcAreaAndPerimeter(Number(number))}.`);
     }
     readline.close();
 });
