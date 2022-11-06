@@ -5,14 +5,16 @@
 // - Знаходить перетин об'єктів і повертає об'єкт перетинів.
 // - Знаходить значення за заданим ключем
 
+const emptyObject = {};
+
 const firstObject = {
     name: "Nazar",
     course: "Node.js",
     courseProgram: practice = {
         number: 24
     },
-    isThisHomeworkDone(object) {
-        return JSON.stringify(object) === '{}';
+    isThisHomeworkDone(status) {
+        return status ? "все ок. прийнято" : "перероби ";
     }
 }
 
@@ -22,18 +24,10 @@ const secondObject = {
     courseProgram: practice = {
         number: 24
     },
-    isThisHomeworkDon(object1) {
-        return JSON.stringify(object1) === '{}';
+    isThisHomeworkDone(status) {
+        return status ? "все ок. прийнято" : "перероби";
     }
 };
-
-// const secondObject = {
-//     name: "Nazar",
-//     course: ".Net",
-//     courseProgram: practice = {
-//         number: 12
-//     }
-// };
 
 
 //1
@@ -55,7 +49,7 @@ function objectIsEmpty(object) {
 //     return JSON.stringify(firstObject) === JSON.stringify(secondObject)
 // }
 
-
+// a more complex solution
 function objectsIsIdentical(firstObject, secondObject) {
     for (const key in firstObject) {
         if (firstObject.hasOwnProperty(key) !== secondObject.hasOwnProperty(key)) return false;
@@ -79,37 +73,73 @@ function objectsIsIdentical(firstObject, secondObject) {
 };
 
 
+//3
+function getIdenticalValues(firstObject, secondObject) {
+    const identicalValues = {}
+    for (const key in firstObject) {
+        switch (typeof (firstObject[key])) {
+            case 'object':
+                if (objectsIsIdentical(firstObject[key], secondObject[key])) {
+                    identicalValues[key] = firstObject[key];
+                } else {
+                    break;
+                };
+                break;
+            case 'function':
+                if (typeof (secondObject[key]) == 'undefined' || (key != 'compare' && firstObject[key].toString() != secondObject[key].toString())) {
+                    break;
+                } else {
+                    identicalValues[key] = firstObject[key];
+                };
+                break;
+            default:
+                if (firstObject[key] === secondObject[key]) {
+                    identicalValues[key] = firstObject[key];
+                }
+        }
 
-//пройтися по об'єкту і поернути тільки значення які однакові
-function fingCrossingOfObjects(firstObject, secondObject) {
-
-}
-
-function findValueByKey(key) {
-    console.log(firstObject.key);
-    console.log(firstObject['key']);
-    console.log(firstObject["key"]);
-    console.log(firstObject[`key`]);
-    console.log(firstObject.name);
-    let value = firstObject.key;
-    if (value === undefined) {
-        return `No values found by key: "${key}".`
-    } else {
-        return `By key "${key}" was found: "${value}".`
     }
-
-    // if(key in firstObject){
-    //     return `Існує значення з ключом "${key}".`
-    // } else {
-    //     return `Значення з ключом "${key}" не існує.`
-    // }
+    return identicalValues;
 }
 
-console.log(objectIsEmpty(firstObject) ? "The object is empty." : "The object is not empty.");
-console.log(objectIsEmpty(secondObject) ? "The object is empty." : "The object is not empty.");
+//4
+function getValueByKey(key, object) {
+    if (key in object) {
+        return object[key]
+    } 
+}
 
+//alternative function with input in CLI
+// const readline = require('readline').createInterface({
+//     input: process.stdin,
+//     output: process.stdout
+// });
+
+// function getValueByKey(object) {
+//     readline.question("Enter the key by which you want to get the value: ", function (answer) {
+//         let key = answer;
+//         if (key in object) {
+//             console.log(`For the key: "${key}" was found value: "${object[key]}".`);
+//         } else {
+//             console.log(`Value with key "${key}" does not exist.`);
+//         }
+//         readline.close();
+//     });
+// }
+
+//1
+console.log(objectIsEmpty(emptyObject) ? "The object is empty." : "The object is not empty.");
+console.log(objectIsEmpty(firstObject) ? "The object is empty." : "The object is not empty.");
+
+//2
 console.log(objectsIsIdentical(firstObject, secondObject) ? "Objects are identical." : "The objects are not identical.");
 console.log(objectsIsIdentical(firstObject, firstObject) ? "Objects are identical." : "Objects are not identical.");
 
+//3
+console.log(getIdenticalValues(firstObject, secondObject));
+console.log(getIdenticalValues(firstObject, firstObject));
 
-// console.log(findValueByKey("name"));
+//4
+console.log(getValueByKey("name" ,firstObject) ? `Value ${getValueByKey("name" ,firstObject)}` : `Value for the key you entered does not exist.`);
+//Calling an alternative function
+// getValueByKey(firstObject)
