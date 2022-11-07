@@ -4,7 +4,7 @@
 
 // Також фукцію пошуку площі перетину двох кіл.
 
-const Circle = {
+const circle = {
     x: 1,
     y: 2,
     r: 201,
@@ -36,20 +36,20 @@ function NewCircle(x, y, r) {
     // }
 }
 
-const readline = require('readline').createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
+// const readline = require('readline').createInterface({
+//     input: process.stdin,
+//     output: process.stdout
+// });
 
-readline.question("Enter parameters of your circle, in format x, y, r (x and y - center coordinates, r - radius): ", function (answer) {
+// readline.question("Enter parameters of your circle, in format x, y, r (x and y - center coordinates, r - radius): ", function (answer) {
 
-    let answerArr = answer.split(', ');
-    console.log(answerArr);
-    const firstСircle = new NewCircle(answerArr[0], answerArr[1], answerArr[2]);
-});
-readline.close();
+//     let answerArr = answer.split(', ');
+//     console.log(answerArr);
+//     const firstСircle = new NewCircle(answerArr[0], answerArr[1], answerArr[2]);
+// });
+// readline.close();
 
-// const firstСircle = new NewCircle(0, 1, 2);
+const firstСircle = new NewCircle(0, 1, 2);
 const secondCircle = new NewCircle(0, 1, 2);
 // console.log(circle1.getName());
 
