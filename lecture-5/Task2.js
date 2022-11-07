@@ -20,34 +20,11 @@ function Circle(x, y , r) {
     }
 }
 
-const firstСircle = new Circle(0, 0, 2);
-const secondCircle = new Circle(3, 0, 4);
-
-// const firstСircle = {
-//     x: 0,
-//     y: 0,
-//     r: 4,
-
-//     getAreaOfCircle() {
-//         let areaOfCircle = Math.PI * Math.pow(this.r, 2);
-//         return areaOfCircle;
-//     }
-
-//     getPerimeterOfCircle() {
-//         let perimeterOfCircle = 2 * Math.PI * this.r;
-//         return perimeterOfCircle;
-//     }
-// }
-
-// const secondCircle = {
-//     x: 0,
-//     y: 0,
-//     r: 2,
-// }
+const firstСircle = new Circle(0, 0, 3);
+const secondCircle = new Circle(5, 0, 4);
 
 function getAreaOfIntersectionOfCircles(firstСircle, secondCircle) {
     let distance = Math.sqrt(Math.pow((firstСircle.x - secondCircle.x), 2) + Math.pow((firstСircle.y - secondCircle.y), 2));
-    console.log(distance)
 
     if (distance >= firstСircle.r + secondCircle.r) {
         return 0;
@@ -56,22 +33,20 @@ function getAreaOfIntersectionOfCircles(firstСircle, secondCircle) {
     } else if ((distance + firstСircle.r) <= secondCircle.r) {
         return firstСircle.getAreaOfCircle()
     } else {
-        const F1 = 2 * Math.acos(((Math.pow(firstСircle.r), 2) - (Math.pow(secondCircle.r), 2) + (Math.pow(distance), 2)) / (2 * firstСircle.r * distance));
-        const F2 = 2 * Math.acos(((Math.pow(secondCircle.r), 2) - (Math.pow(firstСircle.r), 2) + (Math.pow(distance), 2)) / (2 * secondCircle.r * distance));
+        const F1 = 2 * Math.acos(((firstСircle.r * firstСircle.r) - (secondCircle.r * secondCircle.r) + (distance * distance)) / (2 * firstСircle.r * distance));
+        const F2 = 2 * Math.acos(((secondCircle.r * secondCircle.r) - (firstСircle.r * firstСircle.r) + (distance * distance)) / (2 * secondCircle.r * distance));
 
-        const S1 = ((Math.pow(firstСircle.r), 2) * (F1 - Math.sin(F1))) / 2;
-        const S2 = ((Math.pow(secondCircle.r), 2) * (F2 - Math.sin(F2))) / 2;
+        const S1 = ((firstСircle.r * firstСircle.r) * (F1 - Math.sin(F1))) / 2;
+        const S2 = ((secondCircle.r * secondCircle.r) * (F2 - Math.sin(F2))) / 2;
 
-        const S = S1 + S2;
-
-        return S;
+        return S1 + S2;
     }
 }
 
-console.log(`The area of the circle is: ${firstСircle.getAreaOfCircle().toFixed(1)}.`);
-console.log(`The perimeter of the circle is: ${firstСircle.getPerimeterOfCircle().toFixed(1)}.`);
+console.log(`The area of the circle is: ${firstСircle.getAreaOfCircle().toFixed(2)}.`);
+console.log(`The perimeter of the circle is: ${firstСircle.getPerimeterOfCircle().toFixed(2)}.`);
 
-console.log(`The area of the circle is: ${secondCircle.getAreaOfCircle().toFixed(1)}.`);
-console.log(`The perimeter of the circle is: ${secondCircle.getPerimeterOfCircle().toFixed(1)}.`);
+console.log(`The area of the circle is: ${secondCircle.getAreaOfCircle().toFixed(2)}.`);
+console.log(`The perimeter of the circle is: ${secondCircle.getPerimeterOfCircle().toFixed(2)}.`);
 
-console.log(getAreaOfIntersectionOfCircles(firstСircle, secondCircle).toFixed(1));
+console.log(`Area of intersection of circles: ${getAreaOfIntersectionOfCircles(firstСircle, secondCircle).toFixed(2)}`);

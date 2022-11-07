@@ -140,6 +140,6 @@ console.log(getIdenticalValues(firstObject, secondObject));
 console.log(getIdenticalValues(firstObject, firstObject));
 
 //4
-console.log(getValueByKey("name" ,firstObject) ? `Value ${getValueByKey("name" ,firstObject)}` : `Value for the key you entered does not exist.`);
+console.log(getValueByKey("name" ,firstObject) ? `Value: ${getValueByKey("name" ,firstObject)}` : `Value for the key you entered does not exist.`);
 //Calling an alternative function
 // getValueByKey(firstObject)
