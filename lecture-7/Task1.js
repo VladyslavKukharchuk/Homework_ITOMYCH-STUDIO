@@ -4,15 +4,12 @@
 // ● 5 унікальних методів
 
 class Quadrangle {
-    //example of encapsulation
-    #p1;
-    #p2;
     constructor(x1, y1, x2, y2) {
-        this.#p1 = {
+        this.p1 = {
             x: x1,
             y: y1
         };
-        this.#p2 = {
+        this.p2 = {
             x: x2,
             y: y2
         };
@@ -22,10 +19,10 @@ class Quadrangle {
         let A = this;
         let B = quadrangle;
 
-        let left = Math.max(A.#p1.x, B.#p1.x);
-        let top = Math.min(A.#p2.y, B.#p2.y);
-        let right = Math.min(A.#p2.x, B.#p2.x);
-        let bottom = Math.max(A.#p1.y, B.#p1.y);
+        let left = Math.max(A.p1.x, B.p1.x);
+        let top = Math.min(A.p2.y, B.p2.y);
+        let right = Math.min(A.p2.x, B.p2.x);
+        let bottom = Math.max(A.p1.y, B.p1.y);
         let witdth = right - left;
         let height = top - bottom;
         if ((witdth <= 0) || (height <= 0)) {
@@ -37,11 +34,23 @@ class Quadrangle {
 }
 
 
-
+//example of inheritance
 class Square extends Quadrangle {
 
     constructor(x1, y1, x2, y2) {
         super(x1, y1, x2, y2);
+    }
+
+    get diagonal() {
+        return Math.sqrt(Math.pow((this.p1.x - this.p2.x), 2) + Math.pow((this.p1.y - this.p2.y), 2));
+    }
+
+    get sideLength() {
+        return this.diagonal / Math.sqrt(2);
+    }
+
+    get area() {
+        return Math.pow((this.diagonal), 2) / 2;
     }
 }
 
@@ -50,10 +59,11 @@ const firstSquare = new Square(0, 0, 100, 100);
 //Пересікаються 1 кутом
 const secondSquare = new Square(50, 50, 150, 150);
 
-//example of encapsulation
-// console.log(firstSquare.#p1); //Private field must be declared in an enclosing class
-
 console.log(secondSquare.getAreaOfIntersection(firstSquare) ? `Area of intersection of square: ${secondSquare.getAreaOfIntersection(firstSquare)}` : `The square do not intersect.`);
+console.log(firstSquare.diagonal)
+console.log(firstSquare.sideLength)
+console.log(firstSquare.area)
+
 
 
 class Rectangle extends Quadrangle {
@@ -63,7 +73,7 @@ class Rectangle extends Quadrangle {
 }
 
 //Додатні координати
-const Rectangle1 = new Rectangle(100, 0, 400, 200);
+const rectangle1 = new Rectangle(100, 0, 400, 200);
 //Пересікаються 1 кутом
 const rectangle2 = new Rectangle(200, 100, 500, 300);
 //Пересікаються двома кутами
@@ -93,17 +103,17 @@ const rectangle13 = new Rectangle(-350, -150, -150, -50);
 const rectangle14 = new Rectangle(-400, -500, -100, -300);
 
 //Пересікаються 1 кутом
-console.log(rectangle2.getAreaOfIntersection(Rectangle1) ? `Area of intersection of rectangles: ${rectangle2.getAreaOfIntersection(Rectangle1)}` : `The rectangles do not intersect.`);
+console.log(rectangle2.getAreaOfIntersection(rectangle1) ? `Area of intersection of rectangles: ${rectangle2.getAreaOfIntersection(rectangle1)}` : `The rectangles do not intersect.`);
 //Пересікаються двома кутами
-console.log(rectangle3.getAreaOfIntersection(Rectangle1) ? `Area of intersection of rectangles: ${rectangle3.getAreaOfIntersection(Rectangle1)}` : `The rectangles do not intersect.`);
+console.log(rectangle3.getAreaOfIntersection(rectangle1) ? `Area of intersection of rectangles: ${rectangle3.getAreaOfIntersection(rectangle1)}` : `The rectangles do not intersect.`);
 //Проходить через середину
-console.log(rectangle4.getAreaOfIntersection(Rectangle1) ? `Area of intersection of rectangles: ${rectangle4.getAreaOfIntersection(Rectangle1)}` : `The rectangles do not intersect.`);
+console.log(rectangle4.getAreaOfIntersection(rectangle1) ? `Area of intersection of rectangles: ${rectangle4.getAreaOfIntersection(rectangle1)}` : `The rectangles do not intersect.`);
 //Пересікаються двома кутами інший бік
-console.log(rectangle5.getAreaOfIntersection(Rectangle1) ? `Area of intersection of rectangles: ${rectangle5.getAreaOfIntersection(Rectangle1)}` : `The rectangles do not intersect.`);
+console.log(rectangle5.getAreaOfIntersection(rectangle1) ? `Area of intersection of rectangles: ${rectangle5.getAreaOfIntersection(rectangle1)}` : `The rectangles do not intersect.`);
 //Повністю пересікаються
-console.log(rectangle6.getAreaOfIntersection(Rectangle1) ? `Area of intersection of rectangles: ${rectangle6.getAreaOfIntersection(Rectangle1)}` : `The rectangles do not intersect.`);
+console.log(rectangle6.getAreaOfIntersection(rectangle1) ? `Area of intersection of rectangles: ${rectangle6.getAreaOfIntersection(rectangle1)}` : `The rectangles do not intersect.`);
 //Не пересікаються
-console.log(rectangle7.getAreaOfIntersection(Rectangle1) ? `Area of intersection of rectangles: ${rectangle7.getAreaOfIntersection(Rectangle1)}` : `The rectangles do not intersect.`);
+console.log(rectangle7.getAreaOfIntersection(rectangle1) ? `Area of intersection of rectangles: ${rectangle7.getAreaOfIntersection(rectangle1)}` : `The rectangles do not intersect.`);
 
 //Пересікаються 1 кутом
 console.log(rectangle9.getAreaOfIntersection(rectangle8) ? `Area of intersection of rectangles: ${rectangle9.getAreaOfIntersection(rectangle8)}` : `The rectangles do not intersect.`);
@@ -119,29 +129,54 @@ console.log(rectangle13.getAreaOfIntersection(rectangle8) ? `Area of intersectio
 console.log(rectangle14.getAreaOfIntersection(rectangle8) ? `Area of intersection of rectangles: ${rectangle14.getAreaOfIntersection(rectangle8)}` : `The rectangles do not intersect.`);
 
 
+class Ellipse {
+    #x
+    #y
+    constructor(x, y, a, b) {
+        this.#x = x;
+        this.#y = y;
+        this.a = a;
+        this.b = b;
+    };
+
+    get area() {
+        return Math.PI * this.a * this.b;
+    }
+
+    get center() {
+        return {
+            x: this.#x,
+            y: this.#y
+        };
+    }
+}
+
+const ellipse1 = new Ellipse(0, 0, 5, 10);
+
+console.log(ellipse1.area);
+
+console.log(ellipse1.center);
 
 
+//example of encapsulation
+// console.log(ellipse1.#x , ellipse1.#y); //Private field must be declared in an enclosing class
 
+class Diamond {
+    constructor(x, y, d1, d2) {
+        this.x = x,
+            this.y = y,
+            this.d1 = d1,
+            this.d2 = d2
+    };
 
+    get area() {
+        return 1 / 2 * (this.d1 * this.d2);
+    }
+}
 
-// class User {
-//     constructor(firstName, secondName) {
-//         this.firstName = firstName,
-//         this.secondName = secondName
-//     }
+const diamond1 = new Diamond(0, 0, 5, 10);
 
-//     get fullName() {
-//         return `${this.firstName}, ${this.secondName}`
-//     }
-// }
-
-// const user1 = new User('Jhon', 'See');
-
-
-
-
-
-
+console.log(diamond1.area);
 
 class Circle {
     constructor(x, y, r) {
