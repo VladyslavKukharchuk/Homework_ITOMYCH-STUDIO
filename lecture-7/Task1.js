@@ -4,7 +4,7 @@
 // ● 5 унікальних методів
 
 class Quadrangle {
-    constructor(x1, y1, x2, y2) {
+    constructor(x1, y1, x2, y2, x3, y3, x4, y4) {
         this.p1 = {
             x: x1,
             y: y1
@@ -12,6 +12,14 @@ class Quadrangle {
         this.p2 = {
             x: x2,
             y: y2
+        };
+        this.p3 = {
+            x: x3,
+            y: y3
+        };
+        this.p4 = {
+            x: x4,
+            y: y4
         };
     }
 
@@ -29,7 +37,7 @@ class Quadrangle {
             return false;
         } else {
             return witdth * height;
-        }
+        };
     }
 }
 
@@ -60,9 +68,9 @@ const firstSquare = new Square(0, 0, 100, 100);
 const secondSquare = new Square(50, 50, 150, 150);
 
 console.log(secondSquare.getAreaOfIntersection(firstSquare) ? `Area of intersection of square: ${secondSquare.getAreaOfIntersection(firstSquare)}` : `The square do not intersect.`);
-console.log(firstSquare.diagonal)
-console.log(firstSquare.sideLength)
-console.log(firstSquare.area)
+console.log(`Diagonal of square: ${firstSquare.diagonal.toFixed(2)}`);
+console.log(`Side length: ${firstSquare.sideLength}`);
+console.log(`Area of square: ${firstSquare.area}`);
 
 
 
@@ -102,6 +110,7 @@ const rectangle13 = new Rectangle(-350, -150, -150, -50);
 //Не пересікаються
 const rectangle14 = new Rectangle(-400, -500, -100, -300);
 
+//Test function getAreaOfIntersection for rectangle
 //Пересікаються 1 кутом
 console.log(rectangle2.getAreaOfIntersection(rectangle1) ? `Area of intersection of rectangles: ${rectangle2.getAreaOfIntersection(rectangle1)}` : `The rectangles do not intersect.`);
 //Пересікаються двома кутами
@@ -128,10 +137,10 @@ console.log(rectangle13.getAreaOfIntersection(rectangle8) ? `Area of intersectio
 //Не пересікаються
 console.log(rectangle14.getAreaOfIntersection(rectangle8) ? `Area of intersection of rectangles: ${rectangle14.getAreaOfIntersection(rectangle8)}` : `The rectangles do not intersect.`);
 
-
+//example of encapsulation
 class Ellipse {
-    #x
-    #y
+    #x;
+    #y;
     constructor(x, y, a, b) {
         this.#x = x;
         this.#y = y;
@@ -141,32 +150,38 @@ class Ellipse {
 
     get area() {
         return Math.PI * this.a * this.b;
-    }
+    };
 
     get center() {
         return {
             x: this.#x,
             y: this.#y
         };
-    }
+    };
+
+    // //написати сетер для міни координат центра
+    // set moveCenter(x, y) { 
+    //     this.#x = x;
+    //     this.#y = y;
+    // }
 }
 
 const ellipse1 = new Ellipse(0, 0, 5, 10);
 
-console.log(ellipse1.area);
+console.log(`Area of ellipse: ${ellipse1.area.toFixed(2)}`);
 
 console.log(ellipse1.center);
-
 
 //example of encapsulation
 // console.log(ellipse1.#x , ellipse1.#y); //Private field must be declared in an enclosing class
 
+
 class Diamond {
     constructor(x, y, d1, d2) {
-        this.x = x,
-            this.y = y,
-            this.d1 = d1,
-            this.d2 = d2
+        this.x = x;
+        this.y = y;
+        this.d1 = d1;
+        this.d2 = d2;
     };
 
     get area() {
@@ -176,7 +191,8 @@ class Diamond {
 
 const diamond1 = new Diamond(0, 0, 5, 10);
 
-console.log(diamond1.area);
+console.log(`Area of diamond: ${diamond1.area}`);
+
 
 class Circle {
     constructor(x, y, r) {
