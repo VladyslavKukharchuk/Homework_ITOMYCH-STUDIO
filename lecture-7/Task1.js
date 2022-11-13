@@ -3,6 +3,10 @@
 // ● 5 різних класів (Геометричні фігури)
 // ● 5 унікальних методів
 
+// Home task 2
+// Для заданих фігур написати метод який обраховує площу перетину заданих фігур.
+// Приклад: Площа перетину 2 квадратів і так далі.
+
 class Quadrangle {
     constructor(x1, y1, x2, y2, x3, y3, x4, y4) {
         this.p1 = {
@@ -62,6 +66,7 @@ class Square extends Quadrangle {
     }
 }
 
+//Square
 //Додатні координати
 const firstSquare = new Square(0, 0, 100, 100);
 //Пересікаються 1 кутом
@@ -80,6 +85,7 @@ class Rectangle extends Quadrangle {
     }
 }
 
+//Rectangle
 //Додатні координати
 const rectangle1 = new Rectangle(100, 0, 400, 200);
 //Пересікаються 1 кутом
@@ -158,14 +164,9 @@ class Ellipse {
             y: this.#y
         };
     };
-
-    // //написати сетер для міни координат центра
-    // set moveCenter(x, y) { 
-    //     this.#x = x;
-    //     this.#y = y;
-    // }
 }
 
+//Ellipse
 const ellipse1 = new Ellipse(0, 0, 5, 10);
 
 console.log(`Area of ellipse: ${ellipse1.area.toFixed(2)}`);
@@ -189,6 +190,7 @@ class Diamond {
     }
 }
 
+//Diamond
 const diamond1 = new Diamond(0, 0, 5, 10);
 
 console.log(`Area of diamond: ${diamond1.area}`);
@@ -228,11 +230,8 @@ class Circle {
     }
 }
 
+//Circle
 const firstСircle = new Circle(0, 0, 3);
 const secondCircle = new Circle(5, 0, 4);
 
 console.log(`Area of intersection of circles: ${firstСircle.getAreaOfIntersection(secondCircle).toFixed(2)}`);
-
-// Home task 2
-// Для заданих фігур написати метод який обраховує площу перетину заданих фігур.
-// Приклад: Площа перетину 2 квадратів і так далі.
