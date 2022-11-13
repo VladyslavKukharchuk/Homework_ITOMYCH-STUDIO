@@ -66,18 +66,6 @@ class Square extends Quadrangle {
     }
 }
 
-//Square
-//Додатні координати
-const firstSquare = new Square(0, 0, 100, 100);
-//Пересікаються 1 кутом
-const secondSquare = new Square(50, 50, 150, 150);
-
-console.log(secondSquare.getAreaOfIntersection(firstSquare) ? `Area of intersection of square: ${secondSquare.getAreaOfIntersection(firstSquare)}` : `The square do not intersect.`);
-console.log(`Diagonal of square: ${firstSquare.diagonal.toFixed(2)}`);
-console.log(`Side length: ${firstSquare.sideLength}`);
-console.log(`Area of square: ${firstSquare.area}`);
-
-
 
 class Rectangle extends Quadrangle {
     constructor(x1, y1, x2, y2) {
@@ -85,63 +73,6 @@ class Rectangle extends Quadrangle {
     }
 }
 
-//Rectangle
-//Додатні координати
-const rectangle1 = new Rectangle(100, 0, 400, 200);
-//Пересікаються 1 кутом
-const rectangle2 = new Rectangle(200, 100, 500, 300);
-//Пересікаються двома кутами
-const rectangle3 = new Rectangle(0, 50, 200, 150);
-//Проходить через середину
-const rectangle4 = new Rectangle(0, 50, 500, 150);
-//Пересікаються двома кутами інший бік
-const rectangle5 = new Rectangle(300, 50, 500, 150);
-//Повністю пересікаються
-const rectangle6 = new Rectangle(150, 50, 350, 150);
-//Не пересікаються
-const rectangle7 = new Rectangle(100, 300, 400, 500);
-
-//Відємні координатами
-const rectangle8 = new Rectangle(-400, -200, -100, 0);
-//Пересікаються 1 кутом
-const rectangle9 = new Rectangle(-500, -300, -200, -100);
-//Пересікаються двома кутами
-const rectangle10 = new Rectangle(-200, -150, 0, -50);
-//Проходить через середину
-const rectangle11 = new Rectangle(-500, -150, 0, -50);
-//Пересікаються двома кутами інший бік
-const rectangle12 = new Rectangle(-500, -150, -300, -50);
-//Повністю пересікаються
-const rectangle13 = new Rectangle(-350, -150, -150, -50);
-//Не пересікаються
-const rectangle14 = new Rectangle(-400, -500, -100, -300);
-
-//Test function getAreaOfIntersection for rectangle
-//Пересікаються 1 кутом
-console.log(rectangle2.getAreaOfIntersection(rectangle1) ? `Area of intersection of rectangles: ${rectangle2.getAreaOfIntersection(rectangle1)}` : `The rectangles do not intersect.`);
-//Пересікаються двома кутами
-console.log(rectangle3.getAreaOfIntersection(rectangle1) ? `Area of intersection of rectangles: ${rectangle3.getAreaOfIntersection(rectangle1)}` : `The rectangles do not intersect.`);
-//Проходить через середину
-console.log(rectangle4.getAreaOfIntersection(rectangle1) ? `Area of intersection of rectangles: ${rectangle4.getAreaOfIntersection(rectangle1)}` : `The rectangles do not intersect.`);
-//Пересікаються двома кутами інший бік
-console.log(rectangle5.getAreaOfIntersection(rectangle1) ? `Area of intersection of rectangles: ${rectangle5.getAreaOfIntersection(rectangle1)}` : `The rectangles do not intersect.`);
-//Повністю пересікаються
-console.log(rectangle6.getAreaOfIntersection(rectangle1) ? `Area of intersection of rectangles: ${rectangle6.getAreaOfIntersection(rectangle1)}` : `The rectangles do not intersect.`);
-//Не пересікаються
-console.log(rectangle7.getAreaOfIntersection(rectangle1) ? `Area of intersection of rectangles: ${rectangle7.getAreaOfIntersection(rectangle1)}` : `The rectangles do not intersect.`);
-
-//Пересікаються 1 кутом
-console.log(rectangle9.getAreaOfIntersection(rectangle8) ? `Area of intersection of rectangles: ${rectangle9.getAreaOfIntersection(rectangle8)}` : `The rectangles do not intersect.`);
-//Пересікаються двома кутами
-console.log(rectangle10.getAreaOfIntersection(rectangle8) ? `Area of intersection of rectangles: ${rectangle10.getAreaOfIntersection(rectangle8)}` : `The rectangles do not intersect.`);
-//Проходить через середину
-console.log(rectangle11.getAreaOfIntersection(rectangle8) ? `Area of intersection of rectangles: ${rectangle11.getAreaOfIntersection(rectangle8)}` : `The rectangles do not intersect.`);
-//Пересікаються двома кутами інший бік
-console.log(rectangle12.getAreaOfIntersection(rectangle8) ? `Area of intersection of rectangles: ${rectangle12.getAreaOfIntersection(rectangle8)}` : `The rectangles do not intersect.`);
-//Повністю пересікаються
-console.log(rectangle13.getAreaOfIntersection(rectangle8) ? `Area of intersection of rectangles: ${rectangle13.getAreaOfIntersection(rectangle8)}` : `The rectangles do not intersect.`);
-//Не пересікаються
-console.log(rectangle14.getAreaOfIntersection(rectangle8) ? `Area of intersection of rectangles: ${rectangle14.getAreaOfIntersection(rectangle8)}` : `The rectangles do not intersect.`);
 
 //example of encapsulation
 class Ellipse {
@@ -166,16 +97,6 @@ class Ellipse {
     };
 }
 
-//Ellipse
-const ellipse1 = new Ellipse(0, 0, 5, 10);
-
-console.log(`Area of ellipse: ${ellipse1.area.toFixed(2)}`);
-
-console.log(ellipse1.center);
-
-//example of encapsulation
-// console.log(ellipse1.#x , ellipse1.#y); //Private field must be declared in an enclosing class
-
 
 class Diamond {
     constructor(x, y, d1, d2) {
@@ -189,11 +110,6 @@ class Diamond {
         return 1 / 2 * (this.d1 * this.d2);
     }
 }
-
-//Diamond
-const diamond1 = new Diamond(0, 0, 5, 10);
-
-console.log(`Area of diamond: ${diamond1.area}`);
 
 
 class Circle {
@@ -229,6 +145,74 @@ class Circle {
         }
     }
 }
+
+
+
+//Square
+const firstSquare = new Square(0, 0, 100, 100);
+const secondSquare = new Square(50, 50, 150, 150);
+
+console.log(secondSquare.getAreaOfIntersection(firstSquare) ? `Area of intersection of square: ${secondSquare.getAreaOfIntersection(firstSquare)}` : `The square do not intersect.`);
+console.log(`Diagonal of square: ${firstSquare.diagonal.toFixed(2)}`);
+console.log(`Side length: ${firstSquare.sideLength}`);
+console.log(`Area of square: ${firstSquare.area}`);
+
+
+
+//Rectangle
+const rectangle1 = new Rectangle(100, 0, 400, 200);
+const rectangle2 = new Rectangle(200, 100, 500, 300);
+const rectangle3 = new Rectangle(0, 50, 200, 150);
+const rectangle4 = new Rectangle(0, 50, 500, 150);
+const rectangle5 = new Rectangle(300, 50, 500, 150);
+const rectangle6 = new Rectangle(150, 50, 350, 150);
+const rectangle7 = new Rectangle(100, 300, 400, 500);
+
+//Відємні координатами
+const rectangle8 = new Rectangle(-400, -200, -100, 0);
+const rectangle9 = new Rectangle(-500, -300, -200, -100);
+const rectangle10 = new Rectangle(-200, -150, 0, -50);
+const rectangle11 = new Rectangle(-500, -150, 0, -50);
+const rectangle12 = new Rectangle(-500, -150, -300, -50);
+const rectangle13 = new Rectangle(-350, -150, -150, -50);
+const rectangle14 = new Rectangle(-400, -500, -100, -300);
+
+//Test function getAreaOfIntersection for rectangle
+console.log(rectangle2.getAreaOfIntersection(rectangle1) ? `Area of intersection of rectangles: ${rectangle2.getAreaOfIntersection(rectangle1)}` : `The rectangles do not intersect.`);
+console.log(rectangle3.getAreaOfIntersection(rectangle1) ? `Area of intersection of rectangles: ${rectangle3.getAreaOfIntersection(rectangle1)}` : `The rectangles do not intersect.`);
+console.log(rectangle4.getAreaOfIntersection(rectangle1) ? `Area of intersection of rectangles: ${rectangle4.getAreaOfIntersection(rectangle1)}` : `The rectangles do not intersect.`);
+console.log(rectangle5.getAreaOfIntersection(rectangle1) ? `Area of intersection of rectangles: ${rectangle5.getAreaOfIntersection(rectangle1)}` : `The rectangles do not intersect.`);
+console.log(rectangle6.getAreaOfIntersection(rectangle1) ? `Area of intersection of rectangles: ${rectangle6.getAreaOfIntersection(rectangle1)}` : `The rectangles do not intersect.`);
+console.log(rectangle7.getAreaOfIntersection(rectangle1) ? `Area of intersection of rectangles: ${rectangle7.getAreaOfIntersection(rectangle1)}` : `The rectangles do not intersect.`);
+
+//Пересікаються 1 кутом
+console.log(rectangle9.getAreaOfIntersection(rectangle8) ? `Area of intersection of rectangles: ${rectangle9.getAreaOfIntersection(rectangle8)}` : `The rectangles do not intersect.`);
+console.log(rectangle10.getAreaOfIntersection(rectangle8) ? `Area of intersection of rectangles: ${rectangle10.getAreaOfIntersection(rectangle8)}` : `The rectangles do not intersect.`);
+console.log(rectangle11.getAreaOfIntersection(rectangle8) ? `Area of intersection of rectangles: ${rectangle11.getAreaOfIntersection(rectangle8)}` : `The rectangles do not intersect.`);
+console.log(rectangle12.getAreaOfIntersection(rectangle8) ? `Area of intersection of rectangles: ${rectangle12.getAreaOfIntersection(rectangle8)}` : `The rectangles do not intersect.`);
+console.log(rectangle13.getAreaOfIntersection(rectangle8) ? `Area of intersection of rectangles: ${rectangle13.getAreaOfIntersection(rectangle8)}` : `The rectangles do not intersect.`);
+console.log(rectangle14.getAreaOfIntersection(rectangle8) ? `Area of intersection of rectangles: ${rectangle14.getAreaOfIntersection(rectangle8)}` : `The rectangles do not intersect.`);
+
+
+
+//Ellipse
+const ellipse1 = new Ellipse(0, 0, 5, 10);
+
+console.log(`Area of ellipse: ${ellipse1.area.toFixed(2)}`);
+
+console.log(ellipse1.center);
+
+//example of encapsulation
+// console.log(ellipse1.#x , ellipse1.#y); //Private field must be declared in an enclosing class
+
+
+
+//Diamond
+const diamond1 = new Diamond(0, 0, 5, 10);
+
+console.log(`Area of diamond: ${diamond1.area}`);
+
+
 
 //Circle
 const firstСircle = new Circle(0, 0, 3);
