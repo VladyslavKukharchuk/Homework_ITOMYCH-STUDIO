@@ -109,6 +109,13 @@ class Diamond {
     get area() {
         return 1 / 2 * (this.d1 * this.d2);
     }
+
+    get center() {
+        return {
+            x: this.x,
+            y: this.y
+        };
+    };
 }
 
 
@@ -123,6 +130,13 @@ class Circle {
         return Math.PI * Math.pow(this.r, 2);
     };
 
+    get center() {
+        return {
+            x: this.x,
+            y: this.y
+        };
+    };
+
     getAreaOfIntersection(circle) {
         let firstСircle = this;
         let secondCircle = circle;
@@ -130,7 +144,7 @@ class Circle {
         let distance = Math.sqrt(Math.pow((firstСircle.x - secondCircle.x), 2) + Math.pow((firstСircle.y - secondCircle.y), 2));
 
         if (distance >= firstСircle.r + secondCircle.r) {
-            return 0;
+            return false;
         } else if ((distance + secondCircle.r) <= firstСircle.r) {
             return secondCircle.Area
         } else if ((distance + firstСircle.r) <= secondCircle.r) {
