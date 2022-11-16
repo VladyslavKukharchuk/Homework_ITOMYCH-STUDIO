@@ -35,7 +35,7 @@ function loop() {
 
             if (userNumber === systemNumber) {
                 prize = 2;
-                console.log(`  Congratulations!!!! , you guessed the number.`);
+                console.log(`  Congratulations!!!! , you guessed the number. Keep prize: +2 points.`);
             } else if ((userNumber === systemNumber) || (userNumber === systemNumber - 1) || (userNumber === systemNumber + 1)) {
                 prize = 1;
                 console.log(`  You were close, keep the motivating prize: +1 point.`)
