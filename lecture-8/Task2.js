@@ -6,38 +6,6 @@
 // Реалізуйте 2 способами через callback і через проміси.
 
 
-// const user = {
-
-// };
-
-// class User {
-//     constructor(name, age) {
-//         this.name = name;
-//         this.age = age;
-//     };
-
-//     products = [];
-
-//     get information() {
-//         return {
-//             name: this.name,
-//             age: this.age
-//         };
-//     };
-
-//     buyProduct(product) {
-//         basket.forEach((item, i, arr) => {
-//             if (item === product) {
-//                 this.products.push(product)
-//             }
-//         });
-//     };
-// }
-
-// let currentUser = new User("Роман", 21);
-
-
-
 const users = [{
         name: "Roman",
         products: []
@@ -57,6 +25,7 @@ function renderUsers() {
     users.map(user => console.log(`  ${user.name}`));
 }
 
+
 let currentUser = {};
 
 function renderUserInfo() {
@@ -74,20 +43,20 @@ function getUserProducts() {
     }
 }
 
-
-function buyProducts() {
-    basket.forEach((item, i, arr) => {
-        currentUser.products.push(item);
-    });
-};
-
 function autorization(name) {
     users.forEach((user, i, arr) => {
-        if (user.name === name) {
+        if (user.name == name) {
             currentUser = user;
         }
     });
+
+    if (!objectIsEmpty(currentUser)) {
+        return true;
+    } else {
+        return false;
+    }
 }
+
 
 let basket = [];
 
@@ -113,14 +82,11 @@ function cleanBucket() {
     basket = [];
 }
 
-function logout() {
-    currentUser = {};
-}
-
-function exit() {
-    cleanBucket();
-    logout();
-}
+function buyProducts() {
+    basket.forEach((item, i, arr) => {
+        currentUser.products.push(item);
+    });
+};
 
 function getTotal(arr) {
     let total = 0;
@@ -129,6 +95,7 @@ function getTotal(arr) {
     })
     return total;
 }
+
 
 const products = [{
         title: "Apples",
@@ -153,64 +120,16 @@ function renderProducts() {
     products.map(product => console.log(`  ${product.title}, ціна: ${product.price}`));
 }
 
-// renderUsers();
 
-// console.log(currentUser);
-
-// autorization("Nazar");
-
-// console.log(currentUser);
-
-// renderProducts();
-
-// renderBusket();
-
-// putInBasket("Oranges");
-
-// renderBusket();
-
-// buyProducts();
-
-// console.log(currentUser);
-
-// cleanBucket();
-
-// renderBusket();
-
-// renderUserInfo();
+function exit() {
+    cleanBucket();
+    currentUser = {};
+}
 
 
-
-// console.log("Welcome to our store!!\nSign in to your account.\n");
-// renderUsers();
-// console.log("\nTo log in, write your name:\n");
-// let answer = "Nazar";
-
-// autorization(answer);
-
-// renderUserInfo();
-// renderBusket();
-// renderProducts();
-
-// console.log("\nEnter comands in CLI: \n     to buy product: add <name>\n     to show your data: show\n     to finish shopping: by\n     to exit from shop: exit");
-
-
-// if (answer.indexOf('add') !== -1) {
-//     let answerArr = answer.split('-');
-//     console.log(answerArr[1]);
-//     putInBasket(answerArr[1]);
-// } else if (answer.indexOf('show') !== -1) {
-//     renderUserInfo();
-// } else if (answer.indexOf('by') !== -1) {
-//     buyProducts();
-//     cleanBucket();
-// } else if (answer.indexOf('exit') !== -1) {
-//     exit();
-// } else {
-//     console.log("Enter the command correctly!!");
-// }
-
-
+function objectIsEmpty(object) {
+    return JSON.stringify(object) === '{}';
+}
 
 
 readline = require("readline").createInterface({
@@ -218,19 +137,26 @@ readline = require("readline").createInterface({
     output: process.stdout,
 });
 
-console.log("Welcome to our store!!\nSign in to your account.\n");
-renderUsers();
-console.log("\nTo log in, write your name:\n");
-let answer = "Nazar";
 
-autorization(answer);
+function login() {
+    readline.question("\n\nTo log in, write your name: ", (answer) => {
 
-console.log(`\nHi ${answer}!\n`);
-renderBusket();
-renderProducts();
+        if (autorization(answer) === true) {
+            console.log(`\n\n                             Hi ${answer}!\n\n`);
+            renderBusket();
+            renderProducts();
+            shopApp();
+        } else {
+            console.log(`\n\n               User with name "${answer}" does not exist!\n`);
+            // readline.close();
+            login()
+        }
+    });
+};
+
 
 function shopApp() {
-    readline.question("\nComands: \n     to buy product: add <name>\n     to show your data: show\n     to finish shopping: by\n     to exit from shop: exit\nEnter comand in CLI: \n", (answer) => {
+    readline.question("\nComands: \n     to buy product: add <name>\n     to show your data: show\n     to finish shopping: by\n     to exit from shop: exit\nEnter comand in CLI:  ", (answer) => {
         console.log("--------------------------RESULT--------------------------");
 
         if (answer.indexOf('add') !== -1) {
@@ -265,8 +191,9 @@ function shopApp() {
             console.log("------------------------UPDATE-INFO------------------------");
 
             renderUserInfo();
+            console.log("----------------------------------------------------------");
             renderBusket();
-            
+
             console.log("---------------------------INFO---------------------------");
 
             renderProducts();
@@ -274,9 +201,6 @@ function shopApp() {
             console.log("----------------------------------------------------------");
             shopApp();
         } else if (answer.indexOf('exit') !== -1) {
-            // console.log(`\n\n\n`);
-            // console.log(`\n                 Thank you for coming!`);
-            // console.log(`\n\n\n`);
             console.log(`\n\n\n                Thank you for coming!          \n\n\n`);
             exit();
             console.log("----------------------------------------------------------");
@@ -285,40 +209,21 @@ function shopApp() {
             console.log("Enter the command correctly!!");
             shopApp();
         }
-        // console.log("------------------------UPDATE-INFO------------------------");
-
-        // renderBusket();
-        // renderProducts();
-
-        // console.log("-----------------------------------------------------------");
-
-        // shopApp();
     });
 };
+
 
 readline.on('SIGINT', () => {
     console.log(`\nThank you for coming!`);
     readline.close();
 });
 
-shopApp();
 
 
+console.log("\n\n\n----------------------Welcome to our store!!----------------------\n\n                     Sign in to your account.\n\n\n");
 
+renderUsers();
 
-// if(ask){
+login();
 
-// }else(){
-
-// }
-
-
-
-// readline = require("readline").createInterface({
-//     input: process.stdin,
-//     output: process.stdout,
-// });
-
-// let getInput = readline.question("Enter a number between 1 and 6: ");
-
-// console.log(getInput)
+// shopApp();
