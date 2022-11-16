@@ -50,9 +50,7 @@ function loop() {
             console.log("Please enter a number between 1 and 6!");
         }
 
-        if (answer) {
-            loop();
-        }
+        loop();
     });
 };
 
