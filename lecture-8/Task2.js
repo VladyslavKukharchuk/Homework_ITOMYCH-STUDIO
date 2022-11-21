@@ -347,8 +347,13 @@ readline = require("readline").createInterface({
     output: process.stdout,
 });
 
+readline.on('SIGINT', () => {
+    console.log(`\nThank you for coming!`);
+    readline.close();
+});
 
-let login = new Promise((resolve, reject) => {
+
+new Promise((resolve, reject) => {
     console.log("\n\n\n----------------------Welcome to our store!!----------------------\n\n                     Sign in to your account.\n\n\n");
 
     renderUsers();
@@ -356,139 +361,54 @@ let login = new Promise((resolve, reject) => {
     readline.question("\n\nTo log in, write your name: ", (answer) => {
 
         if (autorization(answer) === true) {
-            console.log(`\n\n                             Hi ${answer}!\n\n`);
-            renderBusket();
-            renderProducts();
-            // shopApp();
             resolve(answer);
         } else {
-            console.log(`\n\n               User with name "${answer}" does not exist!\n`);
-            login()
+            reject(answer);
         }
     })
-});
+}).then((answer) => {
+    console.log(`\n\n                             Hi ${answer}!\n\n`);
 
-function eventProcessing(callback, data) {
-    callback(data);
+    new Promise((resolve, reject) => {
 
-    renderBusket();
+        renderBusket();
 
-    renderProducts();
+        renderProducts();
 
-    shopApp();
-}
+        readline.question("\nComands: \n     to buy product: add <name>\n     to show your data: show\n     to finish shopping: by\n     to exit from shop: exit\nEnter comand in CLI:  ", (answer) => {
+            if ((answer.indexOf('add') !== -1) || (answer.indexOf('show') !== -1) || (answer.indexOf('by') !== -1) || (answer.indexOf('exit') !== -1)) {
+                resolve(answer);
+            } else {
+                reject()
+            }
+        })
+    }).then((answer) => {
+        console.log(answer);
+        if (answer.indexOf('add') !== -1) {
 
+            putInBasket(answer);
 
-// function shopApp() {
-//     readline.question("\nComands: \n     to buy product: add <name>\n     to show your data: show\n     to finish shopping: by\n     to exit from shop: exit\nEnter comand in CLI:  ", (answer) => {
+        } else if (answer.indexOf('show') !== -1) {
 
-//         if (answer.indexOf('add') !== -1) {
+            renderUserInfo();
 
-//             eventProcessing(putInBasket, answer);
+        } else if (answer.indexOf('by') !== -1) {
 
-//         } else if (answer.indexOf('show') !== -1) {
+            buyProducts();
 
-//             eventProcessing(renderUserInfo);
+        } else if (answer.indexOf('exit') !== -1) {
 
-//         } else if (answer.indexOf('by') !== -1) {
+            exit();
 
-//             eventProcessing(buyProducts);
-
-//         } else if (answer.indexOf('exit') !== -1) {
-
-//             eventProcessing(exit);
-
-//         } else {
-//             console.log("Enter the command correctly!!");
-//             shopApp();
-//         }
-//     });
-// };
-
-let userAnswer = new Promise((resolve, reject) => {
-    readline.question("\nComands: \n     to buy product: add <name>\n     to show your data: show\n     to finish shopping: by\n     to exit from shop: exit\nEnter comand in CLI:  ", (answer) => {
-        resolve(answer);
-    })
-});
-// userAnswer.then((answer) => {
-//     console.log(answer);
-//     if (answer.indexOf('add') !== -1) {
-
-//         eventProcessing(putInBasket, answer);
-
-//     } else if (answer.indexOf('show') !== -1) {
-
-//         eventProcessing(renderUserInfo);
-
-//     } else if (answer.indexOf('by') !== -1) {
-
-//         eventProcessing(buyProducts);
-
-//     } else if (answer.indexOf('exit') !== -1) {
-
-//         eventProcessing(exit);
-
-//     } else {
-//         console.log("Enter the command correctly!!");
-//         shopApp();
-//     }
-// })
-
-
-
-readline.on('SIGINT', () => {
-    console.log(`\nThank you for coming!`);
-    readline.close();
-});
-
-
-
-// login.then(() => {
-//     userAnswer.then((answer) => {
-//         console.log(answer);
-//         if (answer.indexOf('add') !== -1) {
-
-//             eventProcessing(putInBasket, answer);
-
-//         } else if (answer.indexOf('show') !== -1) {
-
-//             eventProcessing(renderUserInfo);
-
-//         } else if (answer.indexOf('by') !== -1) {
-
-//             eventProcessing(buyProducts);
-
-//         } else if (answer.indexOf('exit') !== -1) {
-
-//             eventProcessing(exit);
-
-//         } else {
-//             console.log("Enter the command correctly!!");
-//             shopApp();
-//         }
-//     })
-// })
-
-userAnswer.then((answer) => {
-    console.log(answer);
-    if (answer.indexOf('add') !== -1) {
-
-        eventProcessing(putInBasket, answer);
-
-    } else if (answer.indexOf('show') !== -1) {
-
-        eventProcessing(renderUserInfo);
-
-    } else if (answer.indexOf('by') !== -1) {
-
-        eventProcessing(buyProducts);
-
-    } else if (answer.indexOf('exit') !== -1) {
-
-        eventProcessing(exit);
-
-    } else {
+        }
+        readline.close();
+    }).catch(() => {
         console.log("Enter the command correctly!!");
-        shopApp();
-    }
+        readline.close();
+    })
+
+}).catch((answer) => {
+    console.log(`\n\n               User with name "${answer}" does not exist!\n`);
+
+    readline.close();
 })
