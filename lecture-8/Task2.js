@@ -7,160 +7,6 @@
 
 
 
-// const users = [{
-//         name: "Roman",
-//         products: []
-//     },
-//     {
-//         name: "Vlad",
-//         products: []
-//     },
-//     {
-//         name: "Nazar",
-//         products: []
-//     }
-// ];
-
-// let currentUser = {};
-
-// function renderUsers() {
-//     console.log(`Registered users: `);
-//     users.map(user => console.log(`  ${user.name}`));
-// }
-
-// function renderUserInfo() {
-//     console.log(`name: ${currentUser.name}.`);
-//     getUserProducts();
-// }
-
-// function renderBusket() {
-//     if (basket.length > 0) {
-//         console.log(`Now in busket: `);
-//         basket.map(product => console.log(`   ${product.title} `));
-//         console.log(`Total: ${getTotal(basket)}.`);
-//     } else {
-//         console.log(`Busket is empty now.`);
-//     }
-// }
-
-// function renderProducts() {
-//     console.log(`Products that now in stock: `);
-//     products.map(product => console.log(`  ${product.title}, ціна: ${product.price}`));
-// }
-
-// function getUserProducts() {
-//     if (currentUser.products.length > 0) {
-//         console.log(`You bought before: `);
-//         currentUser.products.map(product => console.log(`   ${product.title}`));
-//         console.log(`Total: ${getTotal(currentUser.products)}.`);
-//     } else {
-//         console.log("You haven`t bought any products yet.");
-//     }
-// }
-
-// function autorization(name) {
-//     users.forEach((user, i, arr) => {
-//         if (user.name == name) {
-//             currentUser = user;
-//         }
-//     });
-
-//     if (!objectIsEmpty(currentUser)) {
-//         return true;
-//     } else {
-//         return false;
-//     }
-// }
-
-
-// let basket = [];
-
-
-
-// function putInBasket(answer) {
-//     let answerArr = answer.split(' '),
-//         product = answerArr[1]
-
-//     products.forEach((item, i, arr) => {
-//         if (item.title === product) {
-//             basket.push(item)
-//         }
-//     });
-// }
-
-// function cleanBucket() {
-//     basket = [];
-// }
-
-// function buyProducts() {
-//     basket.forEach((item, i, arr) => {
-//         currentUser.products.push(item);
-//     });
-//     cleanBucket();
-// };
-
-// function getTotal(arr) {
-//     let total = 0;
-//     arr.forEach((product, i, arr) => {
-//         total += product.price;
-//     })
-//     return total;
-// }
-
-
-// const products = [{
-//         title: "Apples",
-//         price: 75
-//     },
-//     {
-//         title: "Beer",
-//         price: 50
-//     },
-//     {
-//         title: "Cookies",
-//         price: 100
-//     },
-//     {
-//         title: "Oranges",
-//         price: 125
-//     }
-// ];
-
-
-// function exit() {
-//     cleanBucket();
-//     currentUser = {};
-//     readline.close();
-// }
-
-
-// function objectIsEmpty(object) {
-//     return JSON.stringify(object) === '{}';
-// }
-
-
-// readline = require("readline").createInterface({
-//     input: process.stdin,
-//     output: process.stdout,
-// });
-
-// readline.on('SIGINT', () => {
-//     console.log(`\n\n\n                Thank you for coming!          \n\n\n`);
-//     readline.close();
-// });
-
-
-
-
-
-
-
-
-
-
-
-
-
 const users = [{
         name: "Roman",
         products: []
@@ -175,31 +21,16 @@ const users = [{
     }
 ];
 
-let currentUser = {};
-
 function renderUsers() {
     console.log(`Registered users: `);
     users.map(user => console.log(`  ${user.name}`));
 }
 
+let currentUser = {};
+
 function renderUserInfo() {
     console.log(`name: ${currentUser.name}.`);
     getUserProducts();
-}
-
-function renderBusket() {
-    if (basket.length > 0) {
-        console.log(`Now in busket: `);
-        basket.map(product => console.log(`   ${product.title} `));
-        console.log(`Total: ${getTotal(basket)}.`);
-    } else {
-        console.log(`Busket is empty now.`);
-    }
-}
-
-function renderProducts() {
-    console.log(`Products that now in stock: `);
-    products.map(product => console.log(`  ${product.title}, ціна: ${product.price}`));
 }
 
 function getUserProducts() {
@@ -226,9 +57,7 @@ function autorization(name) {
     }
 }
 
-
 let basket = [];
-
 
 function putInBasket(answer) {
     let answerArr = answer.split(' '),
@@ -245,6 +74,16 @@ function cleanBucket() {
     basket = [];
 }
 
+function renderBusket() {
+    if (basket.length > 0) {
+        console.log(`Now in busket: `);
+        basket.map(product => console.log(`   ${product.title} `));
+        console.log(`Total: ${getTotal(basket)}.`);
+    } else {
+        console.log(`Busket is empty now.`);
+    }
+}
+
 function buyProducts() {
     basket.forEach((item, i, arr) => {
         currentUser.products.push(item);
@@ -259,7 +98,6 @@ function getTotal(arr) {
     })
     return total;
 }
-
 
 const products = [{
         title: "Apples",
@@ -279,6 +117,10 @@ const products = [{
     }
 ];
 
+function renderProducts() {
+    console.log(`Products that now in stock: `);
+    products.map(product => console.log(`  ${product.title}, ціна: ${product.price}`));
+}
 
 function exit() {
     cleanBucket();
@@ -286,11 +128,9 @@ function exit() {
     readline.close();
 }
 
-
 function objectIsEmpty(object) {
     return JSON.stringify(object) === '{}';
 }
-
 
 readline = require("readline").createInterface({
     input: process.stdin,
