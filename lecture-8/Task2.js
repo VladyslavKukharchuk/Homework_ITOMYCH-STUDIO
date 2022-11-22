@@ -5,6 +5,8 @@
 // 4. Покупка товару
 // Реалізуйте 2 способами через callback і через проміси.
 
+
+
 // const users = [{
 //         name: "Roman",
 //         products: []
@@ -142,72 +144,21 @@
 //     output: process.stdout,
 // });
 
-
-// function login() {
-//     readline.question("\n\nTo log in, write your name: ", (answer) => {
-
-//         if (autorization(answer) === true) {
-//             console.log(`\n\n                             Hi ${answer}!\n\n`);
-//             renderBusket();
-//             renderProducts();
-//             shopApp();
-//         } else {
-//             console.log(`\n\n               User with name "${answer}" does not exist!\n`);
-//             login()
-//         }
-//     });
-// };
-
-// function eventProcessing(callback, data) {
-//     callback(data);
-
-//     renderBusket();
-
-//     renderProducts();
-
-//     shopApp();
-// }
-
-
-// function shopApp() {
-//     readline.question("\nComands: \n     to buy product: add <name>\n     to show your data: show\n     to finish shopping: by\n     to exit from shop: exit\nEnter comand in CLI:  ", (answer) => {
-
-//         if (answer.indexOf('add') !== -1) {
-
-//             eventProcessing(putInBasket, answer);
-
-//         } else if (answer.indexOf('show') !== -1) {
-
-//             eventProcessing(renderUserInfo);
-
-//         } else if (answer.indexOf('by') !== -1) {
-
-//             eventProcessing(buyProducts);
-
-//         } else if (answer.indexOf('exit') !== -1) {
-
-//             eventProcessing(exit);
-
-//         } else {
-//             console.log("Enter the command correctly!!");
-//             shopApp();
-//         }
-//     });
-// };
-
-
 // readline.on('SIGINT', () => {
-//     console.log(`\nThank you for coming!`);
+//     console.log(`\n\n\n                Thank you for coming!          \n\n\n`);
 //     readline.close();
 // });
 
 
 
-// console.log("\n\n\n----------------------Welcome to our store!!----------------------\n\n                     Sign in to your account.\n\n\n");
 
-// renderUsers();
 
-// login();
+
+
+
+
+
+
 
 
 const users = [{
@@ -279,7 +230,6 @@ function autorization(name) {
 let basket = [];
 
 
-
 function putInBasket(answer) {
     let answerArr = answer.split(' '),
         product = answerArr[1]
@@ -348,34 +298,97 @@ readline = require("readline").createInterface({
 });
 
 readline.on('SIGINT', () => {
-    console.log(`\nThank you for coming!`);
+    console.log(`\n\n\n                Thank you for coming!          \n\n\n`);
     readline.close();
 });
 
 
-new Promise((resolve, reject) => {
-    console.log("\n\n\n----------------------Welcome to our store!!----------------------\n\n                     Sign in to your account.\n\n\n");
 
-    renderUsers();
+// //callback
+// function login(callback) {
 
-    readline.question("\n\nTo log in, write your name: ", (answer) => {
+//     renderUsers();
 
-        if (autorization(answer) === true) {
-            resolve(answer);
-        } else {
-            reject(answer);
-        }
-    })
-}).then((answer) => {
-    console.log(`\n\n                             Hi ${answer}!\n\n`);
+//     readline.question("\nTo log in, write your name: ", (answer) => {
 
-    new Promise((resolve, reject) => {
+//         if (autorization(answer) === true) {
+//             console.log(`\n\n                         Hi ${answer}!\n\n`);
+//             callback();
+//         } else {
+//             console.log(`\n\n               User with name "${answer}" does not exist!\n`);
+//             login();
+//         }
+//     });
+// };
+
+
+// function getComand() {
+
+//     console.log("\n---------------------------INFO---------------------------\n");
+
+//     renderBusket();
+
+//     console.log("\n----------------------------------------------------------\n");
+
+//     renderProducts();
+
+//     console.log("\n----------------------------------------------------------\n");
+
+//     readline.question("\nComands: \n     to buy product: add <name>\n     to show your data: show\n     to finish shopping: by\n     to exit from shop: exit\n\nEnter comand in CLI:  ", (answer) => {
+
+//         if (answer.indexOf('add') !== -1) {
+
+
+//             putInBasket(answer);
+//             getComand();
+
+//         } else if (answer.indexOf('show') !== -1) {
+
+//             console.log("\n------------------------USER--INFO------------------------\n");
+//             renderUserInfo();
+//             getComand();
+
+//         } else if (answer.indexOf('by') !== -1) {
+
+
+//             buyProducts();
+//             getComand();
+
+//         } else if (answer.indexOf('exit') !== -1) {
+
+//             console.log(`\n\n\n                Thank you for coming!          \n\n\n`);
+//             exit();
+
+//         } else {
+//             console.log("Enter the command correctly!!");
+//             getComand();
+//         }
+//     });
+// };
+
+
+
+// console.log("\n\n\n----------------------Welcome to our store!!----------------------\n\n                     Sign in to your account.\n\n\n");
+
+// login(getComand);
+
+
+
+//Promise
+function getComand() {
+    return new Promise((resolve, reject) => {
+
+        console.log("\n---------------------------INFO---------------------------\n");
 
         renderBusket();
 
+        console.log("\n----------------------------------------------------------\n");
+
         renderProducts();
 
-        readline.question("\nComands: \n     to buy product: add <name>\n     to show your data: show\n     to finish shopping: by\n     to exit from shop: exit\nEnter comand in CLI:  ", (answer) => {
+        console.log("\n----------------------------------------------------------\n");
+
+        readline.question("\nComands: \n     to buy product: add <name>\n     to show your data: show\n     to finish shopping: by\n     to exit from shop: exit\n\nEnter comand in CLI:  ", (answer) => {
             if ((answer.indexOf('add') !== -1) || (answer.indexOf('show') !== -1) || (answer.indexOf('by') !== -1) || (answer.indexOf('exit') !== -1)) {
                 resolve(answer);
             } else {
@@ -383,32 +396,59 @@ new Promise((resolve, reject) => {
             }
         })
     }).then((answer) => {
-        console.log(answer);
         if (answer.indexOf('add') !== -1) {
 
             putInBasket(answer);
+            getComand()
 
         } else if (answer.indexOf('show') !== -1) {
-
+            console.log("\n------------------------USER--INFO------------------------\n");
             renderUserInfo();
+            getComand()
 
         } else if (answer.indexOf('by') !== -1) {
 
             buyProducts();
+            getComand()
 
         } else if (answer.indexOf('exit') !== -1) {
-
+            console.log(`\n\n\n                Thank you for coming!          \n\n\n`);
             exit();
-
         }
-        readline.close();
+
     }).catch(() => {
         console.log("Enter the command correctly!!");
-        readline.close();
+        getComand()
     })
+}
 
-}).catch((answer) => {
-    console.log(`\n\n               User with name "${answer}" does not exist!\n`);
+function login() {
+    return new Promise((resolve, reject) => {
 
-    readline.close();
-})
+        renderUsers();
+
+        readline.question("\nTo log in, write your name: ", (answer) => {
+
+            if (autorization(answer) === true) {
+                resolve(answer);
+            } else {
+                reject(answer);
+            }
+        })
+    }).then((answer) => {
+
+        console.log(`\n\n                         Hi ${answer}!\n\n`);
+
+        getComand()
+
+    }).catch((answer) => {
+        console.log(`\n\n               User with name "${answer}" does not exist!\n`);
+
+        login()
+    })
+}
+
+
+console.log("\n\n\n----------------------Welcome to our store!!----------------------\n\n                     Sign in to your account.\n");
+
+login()
