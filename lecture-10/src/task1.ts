@@ -20,7 +20,7 @@ const u: undefined = undefined;
 const n: null = null;
 //void
 const greetUser = (): void => {
-    alert('Hello, nice to see you!')
+    console.log('Hello, nice to see you!')
 }
 //array
 let list1: number[] = [1, 2, 3];

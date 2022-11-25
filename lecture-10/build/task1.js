@@ -1,60 +1,75 @@
 "use strict";
-function isPointBelongsTriangle(O, A, B, C) {
-    let a = (O.x - A.x) * (O.y - B.y) - (O.x - B.x) * (O.y - A.y), b = (O.x - B.x) * (O.y - C.y) - (O.x - C.x) * (O.y - B.y), c = (O.x - C.x) * (O.y - A.y) - (O.x - A.x) * (O.y - C.y);
-    return ((a >= 0 && b >= 0 && c >= 0) || (a <= 0 && b <= 0 && c <= 0)) ? 1 : 0;
-}
-console.log(isPointBelongsTriangle({ x: 3, y: 5 }, { x: 2, y: 5 }, { x: 5, y: 10 }, { x: 10, y: 5 }));
-console.log(isPointBelongsTriangle({ x: 4, y: 10 }, { x: 2, y: 5 }, { x: 5, y: 10 }, { x: 10, y: 5 }));
-console.log(isPointBelongsTriangle({ x: 6, y: 10 }, { x: 2, y: 5 }, { x: 5, y: 10 }, { x: 10, y: 5 }));
-console.log(isPointBelongsTriangle({ x: 10, y: 5 }, { x: 2, y: 5 }, { x: 5, y: 10 }, { x: 10, y: 5 }));
-console.log(isPointBelongsTriangle({ x: -11, y: -6 }, { x: -15, y: -5 }, { x: -10, y: -5 }, { x: -10, y: -10 }));
-console.log(isPointBelongsTriangle({ x: 8, y: 8 }, { x: -10, y: 10 }, { x: -5, y: 10 }, { x: -10, y: 5 }));
-console.log(isPointBelongsTriangle({ x: -2, y: 2 }, { x: -5, y: -5 }, { x: -5, y: 5 }, { x: 5, y: 5 }));
+// Настроїти typescript для проекту
+// Використовувати ‘строгу’ типізацію
+//Приклад використання типів даних і строгої типізації в TypeScript:
+//boolean
 let isCompleted = false;
+//number
 let decimal = 6;
 let integer = 7.10;
 let hex = 0xf00d;
 let binary = 0b1010;
 let octal = 0o744;
+//string
 let name1 = 'Yauhen';
+//undefined 
 const u = undefined;
+//null
 const n = null;
+//void
 const greetUser = () => {
-    alert('Hello, nice to see you!');
+    console.log('Hello, nice to see you!');
 };
+//array
 let list1 = [1, 2, 3];
 let list2 = [1, 2, 3];
+//tuple
 let x1;
 x1 = ['goodboy', 42];
+//альтернативний запис
 let x2 = ['goodboy', 42];
+//any
 let y = ['goodboy', 42];
 let z = ['goodboy', 42];
 let notSure = false;
+//enum
 var Directions;
 (function (Directions) {
     Directions[Directions["Up"] = 0] = "Up";
     Directions[Directions["Down"] = 1] = "Down";
     Directions[Directions["Left"] = 6] = "Left";
-    Directions[Directions["Right"] = 7] = "Right";
+    Directions[Directions["Right"] = 7] = "Right"; //7
 })(Directions || (Directions = {}));
+//never
+// Функція повертає помилку
 const msg = 'hello';
 const error = (msg) => {
     throw new Error(msg);
 };
+//якщо змінна може мати декілька типів то оголошуємо через |
 let id1;
-let id2;
+let id2; //тепер змінна буде типу Name
+//object
+//звичайне оголошення
 let user1 = {
     name: `Yauhen`,
     age: 30
 };
+//вимога до типів
 let user2 = {
     name: `Yauhen`,
     age: 30
 };
+//function
+//Оголошення функції з вказанням типу вхідних аргументів
 const createPassword1 = (name, age) => `${name}${age}`;
+//Вказання декількох типів для аргументів і дефолтного значення:
 const createPassword2 = (age = 20) => `${age}`;
+//Необов'язковий аргумент для функції:
 const createPassword3 = (name, age) => `${name}${age}`;
+//Тип даних для Rest оператора:
 const createSkills = (name, ...skills) => `${name}, my skills are ${skills.join()}`;
+//class
 class User {
     constructor(name, age, nickName) {
         this.name = name;
