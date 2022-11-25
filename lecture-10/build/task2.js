@@ -77,148 +77,221 @@
 // }
 // console.log(multiplyPolynomials("x^3+1", "x^2+1"));
 // console.log(multiplyPolynomials("x+1", "x-1"));
-function divide(string) {
+// function divide(string: string) {
+//     let result: any = [];
+//     if (string[0] === "-") {
+//         let newString = string.slice(1, string.length + 1);
+//         if (newString.includes("-")) {
+//             let arr = newString.split("-", 2);
+//             let x = arr[0];
+//             let y = arr[1];
+//             // console.log(`--`);
+//             // console.log(arr);
+//             // console.log(x);
+//             // console.log(y);
+//             if (isNaN(+x)) {
+//                 if (x.includes("^")) {
+//                     let x1 = x.split("^", 2);
+//                     result.push(["-", 1, x1[0], parseInt(x1[1])]);
+//                 } else {
+//                     result.push(["-", 1, x[0], 1]);
+//                 }
+//             } else {
+//                 result.push(-x);
+//             }
+//             if (isNaN(+y)) {
+//                 if (y.includes("^")) {
+//                     let y1 = y.split("^", 2);
+//                     result.push(["-", 1, y1[0], parseInt(y1[1])]);
+//                 } else {
+//                     result.push(["-", 1, y[0], 1]);
+//                 }
+//             } else {
+//                 result.push(-y);
+//             }
+//             return result;
+//         } else {
+//             let arr = newString.split("+", 2);
+//             let x = arr[0];
+//             let y = arr[1];
+//             // console.log(`-+`);
+//             // console.log(arr);
+//             // console.log(x);
+//             // console.log(y);
+//             if (isNaN(+x)) {
+//                 if (x.includes("^")) {
+//                     let x1 = x.split("^", 2);
+//                     result.push(["-", 1, x1[0], parseInt(x1[1])]);
+//                 } else {
+//                     result.push(["-", 1, x[0], 1]);
+//                 }
+//             } else {
+//                 result.push(-x);
+//             }
+//             if (isNaN(+y)) {
+//                 if (y.includes("^")) {
+//                     let y1 = y.split("^", 2);
+//                     result.push(["+", 1, y1[0], parseInt(y1[1])]);
+//                 } else {
+//                     result.push(["+", 1, y[0], 1]);
+//                 }
+//             } else {
+//                 result.push(+y);
+//             }
+//             return result;
+//         };
+//     } else {
+//         if (string.includes("-")) {
+//             let arr = string.split("-", 2);
+//             let x = arr[0];
+//             let y = arr[1];
+//             // console.log(`+-`);
+//             // console.log(arr);
+//             // console.log(x);
+//             // console.log(y);
+//             if (isNaN(+x)) {
+//                 if (x.includes("^")) {
+//                     let x1 = x.split("^", 2);
+//                     result.push(["+", 1, x1[0], parseInt(x1[1])]);
+//                 } else {
+//                     result.push(["+", 1, x[0], 1]);
+//                 }
+//             } else {
+//                 result.push(+x);
+//             }
+//             if (isNaN(+y)) {
+//                 if (y.includes("^")) {
+//                     let y1 = y.split("^", 2);
+//                     result.push(["-", 1, y1[0], parseInt(y1[1])]);
+//                 } else {
+//                     result.push(["-", 1, y[0], 1]);
+//                 }
+//             } else {
+//                 result.push(-y);
+//             }
+//             return result;
+//         } else {
+//             let arr = string.split("+", 2);
+//             let x = arr[0];
+//             let y = arr[1];
+//             // console.log(`++`);
+//             // console.log(arr);
+//             // console.log(x);
+//             // console.log(y);
+//             if (isNaN(+x)) {
+//                 if (x.includes("^")) {
+//                     let x1 = x.split("^", 2);
+//                     result.push(["+", 1, x1[0], parseInt(x1[1])]);
+//                 } else {
+//                     result.push(["+", 1, x[0], 1]);
+//                 }
+//             } else {
+//                 result.push(+x);
+//             }
+//             if (isNaN(+y)) {
+//                 if (y.includes("^")) {
+//                     let y1 = y.split("^", 2);
+//                     result.push(["+", 1, y1[0], parseInt(y1[1])]);
+//                 } else{
+//                     result.push(["+", 1, y[0], 1]);
+//                 }
+//             } else {
+//                 result.push(+y);
+//             }
+//             return result;
+//         }
+//     }
+// }
+function distributor(x, operator) {
+    if (isNaN(+x)) {
+        if (x.includes("^")) {
+            let x1 = x.split("^", 2);
+            return [operator, 1, x1[0], parseInt(x1[1])];
+        }
+        else {
+            return [operator, 1, x[0], 1];
+        }
+    }
+    else {
+        if (operator === "-") {
+            return -x;
+        }
+        else {
+            return +x;
+        }
+    }
+}
+function parse(string, operator, operatorForX, operatorForY) {
     let result = [];
+    let arr = string.split(operator, 2);
+    let x = arr[0];
+    let y = arr[1];
+    console.log(operator);
+    console.log(operatorForX + operatorForY);
+    console.log(string);
+    console.log(x);
+    console.log(y);
+    result.push(distributor(arr[0], operatorForX));
+    result.push(distributor(arr[1], operatorForY));
+    return result;
+}
+// function parse(string : string, operator : string, operatorForX : string, operatorForY : string) {
+//     let result: any = [];
+//     let arr = string.split(operator, 2);
+//     let x = arr[0];
+//     let y = arr[1];
+//     console.log(operator);
+//     console.log(operatorForX+operatorForY);
+//     console.log(string);
+//     console.log(x);
+//     console.log(y);
+//     if (isNaN(+x)) {
+//         if (x.includes("^")) {
+//             let x1 = x.split("^", 2);
+//             result.push([operatorForX, 1, x1[0], parseInt(x1[1])]);
+//         } else {
+//             result.push([operatorForX, 1, x[0], 1]);
+//         }
+//     } else {
+//         if(operatorForX === "-"){
+//             result.push(-x);
+//         } else {
+//             result.push(+x);
+//         } 
+//     }
+//     if (isNaN(+y)) {
+//         if (y.includes("^")) {
+//             let y1 = y.split("^", 2);
+//             result.push([operatorForY, 1, y1[0], parseInt(y1[1])]);
+//         } else {
+//             result.push([operatorForY, 1, y[0], 1]);
+//         }
+//     } else {
+//         if(operatorForY === "-"){
+//             result.push(-y);
+//         } else {
+//             result.push(+y);
+//         } 
+//     }
+//     return result;
+// }
+function divide(string) {
     if (string[0] === "-") {
         let newString = string.slice(1, string.length + 1);
         if (newString.includes("-")) {
-            let arr = newString.split("-", 2);
-            let x = arr[0];
-            let y = arr[1];
-            // console.log(`--`);
-            // console.log(arr);
-            // console.log(x);
-            // console.log(y);
-            if (isNaN(+x)) {
-                if (x.includes("^")) {
-                    let x1 = x.split("^", 2);
-                    result.push(["-", 1, x1[0], parseInt(x1[1])]);
-                }
-                else {
-                    result.push(["-", 1, x[0], 1]);
-                }
-            }
-            else {
-                result.push(-x);
-            }
-            if (isNaN(+y)) {
-                if (y.includes("^")) {
-                    let y1 = y.split("^", 2);
-                    result.push(["-", 1, y1[0], parseInt(y1[1])]);
-                }
-                else {
-                    result.push(["-", 1, y[0], 1]);
-                }
-            }
-            else {
-                result.push(-y);
-            }
-            return result;
+            return parse(newString, "-", "-", "-");
         }
         else {
-            let arr = newString.split("+", 2);
-            let x = arr[0];
-            let y = arr[1];
-            // console.log(`-+`);
-            // console.log(arr);
-            // console.log(x);
-            // console.log(y);
-            if (isNaN(+x)) {
-                if (x.includes("^")) {
-                    let x1 = x.split("^", 2);
-                    result.push(["-", 1, x1[0], parseInt(x1[1])]);
-                }
-                else {
-                    result.push(["-", 1, x[0], 1]);
-                }
-            }
-            else {
-                result.push(-x);
-            }
-            if (isNaN(+y)) {
-                if (y.includes("^")) {
-                    let y1 = y.split("^", 2);
-                    result.push(["+", 1, y1[0], parseInt(y1[1])]);
-                }
-                else {
-                    result.push(["+", 1, y[0], 1]);
-                }
-            }
-            else {
-                result.push(+y);
-            }
-            return result;
+            return parse(newString, "+", "-", "+");
         }
         ;
     }
     else {
         if (string.includes("-")) {
-            let arr = string.split("-", 2);
-            let x = arr[0];
-            let y = arr[1];
-            // console.log(`+-`);
-            // console.log(arr);
-            // console.log(x);
-            // console.log(y);
-            if (isNaN(+x)) {
-                if (x.includes("^")) {
-                    let x1 = x.split("^", 2);
-                    result.push(["+", 1, x1[0], parseInt(x1[1])]);
-                }
-                else {
-                    result.push(["+", 1, x[0], 1]);
-                }
-            }
-            else {
-                result.push(+x);
-            }
-            if (isNaN(+y)) {
-                if (y.includes("^")) {
-                    let y1 = y.split("^", 2);
-                    result.push(["-", 1, y1[0], parseInt(y1[1])]);
-                }
-                else {
-                    result.push(["-", 1, y[0], 1]);
-                }
-            }
-            else {
-                result.push(-y);
-            }
-            return result;
+            return parse(string, "-", "+", "-");
         }
         else {
-            let arr = string.split("+", 2);
-            let x = arr[0];
-            let y = arr[1];
-            // console.log(`++`);
-            // console.log(arr);
-            // console.log(x);
-            // console.log(y);
-            if (isNaN(+x)) {
-                if (x.includes("^")) {
-                    let x1 = x.split("^", 2);
-                    result.push(["+", 1, x1[0], parseInt(x1[1])]);
-                }
-                else {
-                    result.push(["+", 1, x[0], 1]);
-                }
-            }
-            else {
-                result.push(+x);
-            }
-            if (isNaN(+y)) {
-                if (y.includes("^")) {
-                    let y1 = y.split("^", 2);
-                    result.push(["+", 1, y1[0], parseInt(y1[1])]);
-                }
-                else {
-                    result.push(["+", 1, y[0], 1]);
-                }
-            }
-            else {
-                result.push(+y);
-            }
-            return result;
+            return parse(string, "+", "+", "+");
         }
     }
 }
@@ -301,7 +374,7 @@ function multiplyPolynomials(polynomial1, polynomial2) {
                 return `${x[0]}${x[1]}${x[2]}`;
             }
             else if ((x[1] === 1) && (x[3] === 1)) {
-                return `${x[2]}`;
+                return `${x[0]}${x[2]}`;
             }
         }
         return x.toString();
@@ -319,15 +392,3 @@ function multiplyPolynomials(polynomial1, polynomial2) {
 }
 console.log(multiplyPolynomials("x^3+1", "x^2-2"));
 // console.log(multiplyPolynomials("x+1", "x-1"));
-// let string1 = 'x+1';
-// let string2 = 'x-1';
-// let string3 = '-x+1';
-// let string4 = '-x-1';
-// console.log(divide(string1));
-// console.log(divide(string2));
-// console.log(divide(string3));
-// console.log(divide(string4));
-// console.log(divide("x^3+1"));
-// console.log(divide("x^2-1"));
-// console.log(divide('x+4'));
-// console.log(divide('x-10'));
