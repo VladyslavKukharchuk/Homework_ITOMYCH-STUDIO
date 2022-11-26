@@ -162,7 +162,7 @@ function multiplyPolynomials(polynomial1: string, polynomial2: string): string {
 
     // return `готово`
 
-    // let calculation = [multiply(a, c), multiply(a, d), multiply(b, c), multiply(b, d)];
+    let calculation = [multiply(a, c), multiply(a, d), multiply(b, c), multiply(b, d)];
     // console.log(calculation)
 
     // function sunOfNumbers(){
@@ -172,6 +172,24 @@ function multiplyPolynomials(polynomial1: string, polynomial2: string): string {
     //     })
     // }
     //метод буде перебирати знаачення і якщо це число то сумувати в суму і вирізати з масива а якщо щось інше то повертати в масив. В кінці суму додати як елемент в масив.
+
+    // let arrayOfArrays = calculation.filter(function(item : any, index : any, array : any) {
+    //     if(typeof(item) === 'object'){
+    //         return item;
+    //     }
+    //   });
+
+      let arrayOfArrays = calculation.filter(element => typeof(element) === 'object');
+
+
+    console.log(arrayOfArrays)
+
+    // function findTheSame(arr : any){
+    //     arr.forEach(function(item, index, array) {
+
+    //       });
+    // }
+
 
     //перебрати масив і перевіряти чи є елементи з однаковми x[3] якщо так то вирізати їх і повернути новий елемент. Але перед цим провести поревірку знаків і додати або відняти запотреби. Повернути: [знак який буде в результата дії (x[1] + або - x[1])] [x[1] + або - x[1]] x[2] x[3]
 
